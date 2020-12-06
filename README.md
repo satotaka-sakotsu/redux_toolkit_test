@@ -1,8 +1,7 @@
 # Redux Toolkitの試用
 
 ## About
-[CAeate React App]](https://github.com/facebook/create-react-apphttps
-://github.com/facebook/create-react-app)
+[CAeate React App]](https://github.com/facebook/create-react-app)
 を利用して、[Redux Toolkit](https://redux-toolkit.js.org/) を試す用のリポジトリ
 
 下記コマンドでredux-toolkit導入済み & typescriptの環境が作られる。
@@ -12,7 +11,7 @@ $ npx create-react-app redxd_toolkit_tset --template redux-typescript
 ```
 
 ## Usage
-Conuterアプリがサンプルとして構築済みのため、Todoアプリを追加する形にした。
+Conuterアプリがサンプルとして構築済みのため、Todoアプリを追加する形にした。  
 redux-toolkitは非同期処理のミドルウェアとして `redux-thunk` をデフォルトで採用しているため、
 [json-server](https://www.npmjs.com/package/json-server) で簡易的なAPI
 を作って、非同期処理を試せるようにした。
@@ -37,25 +36,25 @@ action creator, action types(constants), reducers
   
 デフォルトだと下記のような構成になっている。
 
-src/
-  ┣ app/
-  ┃  ┗ store.js
-  ┣ features/
-  ┃  ┗ counter
-  ┃    ┣ Counter.tsx
-  ┃    ┗ counterSlice.ts
-  ┣ App.tsx
-  ┗ index.ts
+src/  
+  ┣ app/  
+  ┃  ┗ store.js  
+  ┣ features/  
+  ┃  ┗ counter  
+  ┃    ┣ Counter.tsx  
+  ┃    ┗ counterSlice.ts  
+  ┣ App.tsx  
+  ┗ index.ts  
 
 機能単位のディレクトリ、その中にコンポーネントと先述のロジックが記載されたsliceというファイルが存在する。
   
 ducksパターンのようにロジックがsliceファイルに集約されて、複数ファイルを開かなくてよくなっている。  
 ただ、sliceファイルが太ってきた時に見通しが悪くなると想定されるため、適宜別ファイルに切り出していくのが望ましそう。  
 
-- slice
-- reducer
-- operation ... 非同期処理
-- selector ... storeから取り出すstateをcomponent用に整形
-- type ... 型定義
-- その他、constants, stateなど
+- slice  
+- reducer  
+- operation ... 非同期処理  
+- selector ... storeから取り出すstateをcomponent用に整形  
+- type ... 型定義  
+- その他、constants, stateなど  
 
