@@ -87,3 +87,11 @@ src/
   ┗ index.ts  
  ```
  
+ 
+ ## 追記
+ 非同期処理は下記のように `cerateAsyncThank` , `extraReducers` を利用する形が綺麗になりそう。
+ 
+ https://github.com/Sotq17/rtk_starter/blob/master/src/tsx/stores/slices/userSlice.ts#L38-L42
+ 
+ 
+ 
