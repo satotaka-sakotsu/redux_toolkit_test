@@ -1,7 +1,7 @@
 # Redux Toolkitの試用
 
 ## About
-[CAeate React App]](https://github.com/facebook/create-react-app)
+[CAeate React App](https://github.com/facebook/create-react-app)
 を利用して、[Redux Toolkit](https://redux-toolkit.js.org/) を試す用のリポジトリ
 
 下記コマンドでredux-toolkit導入済み & typescriptの環境が作られる。
@@ -48,13 +48,36 @@ src/
 
 機能単位のディレクトリ、その中にコンポーネントと先述のロジックが記載されたsliceというファイルが存在する。
   
-ducksパターンのようにロジックがsliceファイルに集約されて、複数ファイルを開かなくてよくなっている。  
+ducksパターンのようにロジックが1ファイルに集約されて、複数ファイルを開かなくてよくなっている。  
 ただ、sliceファイルが太ってきた時に見通しが悪くなると想定されるため、適宜別ファイルに切り出していくのが望ましそう。  
 
 - slice  
-- reducer  
-- operation ... 非同期処理  
-- selector ... storeから取り出すstateをcomponent用に整形  
-- type ... 型定義  
-- その他、constants, stateなど  
+- reducers  
+- operations ... 非同期処理  
+- selectors ... storeから取り出すstateをcomponent用に整形  
+- types ... 型定義  
+- constants ... 定数
+- states ... component用のstate  
 
+src/      
+  ┣ modules/  
+  ┃  ┣ shared/  
+  ┃  ┃  ┣ components/ 
+  ┃  ┃  ┗ etc..  
+  ┃  ┗ foo/  
+  ┃    ┣ FooContainer.tsx  
+  ┃    ┣ components/ 
+  ┃    ┃  ┣ ComponentA.tsx  
+  ┃    ┃  ┗ ComponentB.tsx  
+  ┃    ┣ counterSlice.ts   
+  ┃    ┣ reducers.ts   
+  ┃    ┣ operations.ts   
+  ┃    ┣ selectors.ts   
+  ┃    ┣ types.ts   
+  ┃    ┣ constants.ts   
+  ┃    ┗ states.ts  
+  ┣ App.tsx   
+  ┗ index.ts  
+  ┗ store.js  
+  
+  
