@@ -1,4 +1,4 @@
-// operators
+import { AppThunk } from '../../store';
 import {
   TodoItemType,
   add,
@@ -17,7 +17,7 @@ const getTodos = async () => {
   return json;
 };
 
-export const fetchTodos = () => async (dispatch: any) => {
+export const fetchTodos = (): AppThunk => async dispatch => {
   try {
     dispatch(fetchStart());
     dispatch(fetchSuccess(await getTodos()));
@@ -42,7 +42,7 @@ const postTodo = async (todo: TodoItemType) => {
 
 export const handleAdd = (
   text: string
-) => async (dispatch: any) => {
+): AppThunk => async dispatch => {
   try {
     const todo = {
       id: Math.floor(Math.random() * Math.floor(1000)),
@@ -76,7 +76,7 @@ const putTodo = async (todo: TodoItemType) => {
 
 export const handleToggle = (
   todo: TodoItemType
-) => async (dispatch: any) => {
+): AppThunk => async dispatch => {
   try {
     const completed = !todo.completed;
     await putTodo({ ...todo, completed });
@@ -96,9 +96,9 @@ const deleteTodos = async (ids: number[]) => {
   await Promise.all(responses);
 };
 
-export const handleDelete = () => async (
-  dispatch: any,
-  getState: any
+export const handleDelete = (): AppThunk => async (
+  dispatch,
+  getState
 ) => {
   try {
     const completedIds = getState().todo.todos
