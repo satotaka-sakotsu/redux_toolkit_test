@@ -36,6 +36,7 @@ action creator, action types(constants), reducers
   
 デフォルトだと下記のような構成になっている。
 
+```
 src/  
   ┣ app/  
   ┃  ┗ store.js  
@@ -45,6 +46,7 @@ src/
   ┃    ┗ counterSlice.ts  
   ┣ App.tsx  
   ┗ index.ts  
+```
 
 機能単位のディレクトリ、その中にコンポーネントと先述のロジックが記載されたsliceというファイルが存在する。
   
@@ -59,25 +61,27 @@ ducksパターンのようにロジックが1ファイルに集約されて、�
 - constants ... 定数
 - states ... component用のstate  
 
+```
 src/      
   ┣ modules/  
   ┃  ┣ shared/  
-  ┃  ┃  ┣ components/ 
+  ┃  ┃  ┣ containers/  
+  ┃  ┃  ┣ components/  
   ┃  ┃  ┗ etc..  
   ┃  ┗ foo/  
-  ┃    ┣ FooContainer.tsx  
-  ┃    ┣ components/ 
+  ┃    ┣ FooContainer.tsx    
+  ┃    ┣ components/  
   ┃    ┃  ┣ ComponentA.tsx  
   ┃    ┃  ┗ ComponentB.tsx  
-  ┃    ┣ counterSlice.ts   
+  ┃    ┣ slice.ts   
   ┃    ┣ reducers.ts   
   ┃    ┣ operations.ts   
   ┃    ┣ selectors.ts   
   ┃    ┣ types.ts   
   ┃    ┣ constants.ts   
   ┃    ┗ states.ts  
-  ┣ App.tsx   
+  ┣ store.ts   
+  ┣ App.tsx  
   ┗ index.ts  
-  ┗ store.js  
-  
-  
+ ```
+ 
