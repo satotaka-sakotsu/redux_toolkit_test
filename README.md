@@ -1,7 +1,7 @@
 # Redux Toolkitの試用
 
 ## About
-[CAeate React App](https://github.com/facebook/create-react-app)
+[Create React App](https://github.com/facebook/create-react-app)
 を利用して、[Redux Toolkit](https://redux-toolkit.js.org/) を試す用のリポジトリ
 
 下記コマンドでredux-toolkit導入済み & typescriptの環境が作られる。
@@ -19,6 +19,8 @@ redux-toolkitは非同期処理のミドルウェアとして `redux-thunk` を�
 開発環境を立ち上げる際はjson-serverも立ち上げる。
 
 ```
+$ npm i
+
 // アプリサーバーを起動
 $ npm start
 
