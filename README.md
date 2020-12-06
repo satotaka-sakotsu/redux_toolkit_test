@@ -1,44 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Redux Toolkitの試用
 
-## Available Scripts
+## About
+[CAeate React App]](https://github.com/facebook/create-react-apphttps
+://github.com/facebook/create-react-app)
+を利用して、[Redux Toolkit](https://redux-toolkit.js.org/) を試す用のリポジトリ
 
-In the project directory, you can run:
+下記コマンドでredux-toolkit導入済み & typescriptの環境が作られる。
 
-### `npm start`
+```
+$ npx create-react-app redxd_toolkit_tset --template redux-typescript  
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Usage
+Conuterアプリがサンプルとして構築済みのため、Todoアプリを追加する形にした。
+redux-toolkitは非同期処理のミドルウェアとして `redux-thunk` をデフォルトで採用しているため、
+[json-server](https://www.npmjs.com/package/json-server) で簡易的なAPI
+を作って、非同期処理を試せるようにした。
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+開発環境を立ち上げる際はjson-serverも立ち上げる。
 
-### `npm test`
+```
+// アプリサーバーを起動
+$ npm start
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// API用のjson-server起動
+$ npx json-server --watch db.json
+```
 
-### `npm run build`
+## ディレクトリ構成について
+redux-toolkitは、機能単位でディレクトリを設けるre-ducksパターンに似た構成になっている。  
+また、定型的な記述が多くなりがちな
+action creator, action types(constants), reducers
+の記述を省略できるようにする
+[createSlice](https://redux-toolkit.js.org/usage/usage-with-typescript#createslice)
+という関数を提供しているため、コード量が少なくなる。 
+  
+デフォルトだと下記のような構成になっている。
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+src/
+  ┣ app/
+  ┃  ┗ store.js
+  ┣ features/
+  ┃  ┗ counter
+  ┃    ┣ Counter.tsx
+  ┃    ┗ counterSlice.ts
+  ┣ App.tsx
+  ┗ index.ts
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+機能単位のディレクトリ、その中にコンポーネントと先述のロジックが記載されたsliceというファイルが存在する。
+  
+ducksパターンのようにロジックがsliceファイルに集約されて、複数ファイルを開かなくてよくなっている。  
+ただ、sliceファイルが太ってきた時に見通しが悪くなると想定されるため、適宜別ファイルに切り出していくのが望ましそう。  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- slice
+- reducer
+- operation ... 非同期処理
+- selector ... storeから取り出すstateをcomponent用に整形
+- type ... 型定義
+- その他、constants, stateなど
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
